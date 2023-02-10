@@ -31,7 +31,6 @@ ol,
 ul {
 	margin: 0;
 	padding: 0;
-	list-style: none;
 }
 
 	h1:empty,
@@ -59,7 +58,7 @@ img,
 figure,
 picture,
 iframe {
-	display: block;
+	display: inline-block;
 	max-width: 100%;
 	height: auto;
 	border: none;
@@ -68,11 +67,6 @@ iframe {
 
 svg {
 	overflow: visible;
-}
-
-canvas {
-	display: block;
-	margin: 0;
 }
 
 input,
@@ -91,11 +85,6 @@ button {
 	-o-appearance: none;
 	appearance: none;
 }
-
-	button,
-	input[type="submit"] {
-		cursor: pointer;
-	}
 
 code {
 	padding: 20px;
