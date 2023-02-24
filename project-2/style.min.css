@@ -1,0 +1,1 @@
+@keyframes jiggle{0%{transform:rotate(0)}20%{transform:rotate(-6deg)}40%{transform:rotate(6deg)}60%{transform:rotate(-3deg)}80%{transform:rotate(3deg)}100%{transform:rotate(0)}}.grid{display:flex;flex-wrap:wrap;gap:20px}.jiggle{animation-name:jiggle;animation-duration:1.2s;animation-fill-mode:both}
