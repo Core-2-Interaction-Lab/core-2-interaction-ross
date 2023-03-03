@@ -7,7 +7,7 @@ const object = {
     'name': '2 chainz',
     'adLib': '/2chainz.ogg',
     'yearStarted': 2010,
-}
+};
 const rapperCollection = [
     {
         'name': '2 chainz',
@@ -76,4 +76,4 @@ filterButtons.forEach(button => {
             toggleRapper(rappers, 'show');
         };
     });
-})
+});
