@@ -1,3 +1,34 @@
+const string = 'plain old text'
+const integer = 2;
+const Boolean = true; // (or false)
+const array = [1,2,3,4,5,6];
+const array2 = ['2 chainz','action bronson'];
+const object = {
+    'name': '2 chainz',
+    'adLib': '/2chainz.ogg',
+    'yearStarted': 2010,
+}
+const rapperCollection = [
+    {
+        'name': '2 chainz',
+        'adLib': '/2chainz.ogg',
+        'yearStarted': 2010,
+    },
+    {
+        'name': 'Action Bronson',
+        'adLib': '/actionbronson.ogg',
+        'yearStarted': 2010,
+    }
+];
+
+const matchingRappers = rapperCollection.filter(rapper => rapper.name == "2 chainz");
+
+console.log(matchingRappers)
+
+// JSON = javascript object notation
+
+
+
 const rappers = document.querySelectorAll('.grid-item');
 
 rappers.forEach(rapper => {
@@ -11,8 +42,6 @@ rappers.forEach(rapper => {
         }, 1200);
     });
 });
-
-
 
 
 // hide everything that doesn't match and show everything that does match
