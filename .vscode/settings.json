@@ -1,0 +1,32 @@
+{
+	"editor.tabSize": 2,
+	"editor.detectIndentation": false,
+	"editor.insertSpaces": false,
+	"editor.formatOnSave": true,
+	"editor.wordWrap": "on",
+	"editor.autoIndent": "advanced",
+	"diffEditor.wordWrap": "on",
+
+	// JS&CSS Minifier
+	"es6-css-minify.minifyOnSave": "no",
+
+	// Live Sass Compiler
+	"liveSassCompile.settings.formats": [
+		{
+			"format": "compressed",
+			"extensionName": ".min.css",
+			"savePath": "/assets-css/css"
+		}
+	],
+	"liveSassCompile.settings.generateMap": false,
+	"liveSassCompile.settings.autoprefix": false,
+	"liveSassCompile.settings.excludeList": [
+		"**/node_modules/**",
+		".vscode/**",
+		"**/assets/**"
+	],
+
+	// Prettier - settings are overwritten in .prettierrc
+	"prettier.requireConfig": true, // require a prettier configuration file to format
+	"prettier.useTabs": true
+}
