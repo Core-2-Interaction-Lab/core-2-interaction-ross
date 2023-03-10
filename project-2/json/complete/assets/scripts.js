@@ -1,8 +1,8 @@
 // Function to render your items
 const renderItems = (collection) => {
 	// The `ul` where the items will be inserted
-	const collectionList = document.getElementById('collection')
-
+	const collectionList = document.getElementById('collection');
+	
 	// Loop through each item in the collection array
 	collection.forEach(item => {
 		const listItem = document.createElement('li') // Make the `li`
