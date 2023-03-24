@@ -1,5 +1,6 @@
 [
 	{
+		"id": "casa-luis-barragan",
 		"title": "CASA LUIS BARRAGÁN",
 		"location": "Mexico City, Mexico",
 		"address": "General Francisco Ramírez 12, Col. Extension Daniel Garza, CDMX CP 11840",
@@ -8,6 +9,7 @@
 		"posterImage": "assets/images/img-1.jpeg"
 	},
 	{
+		"id": "casa-das-canoas",
 		"title": "CASA DAS CANOAS",
 		"location": "Rio de Janeiro, Brazil",
 		"address": "Estrada da Canoa, 1246 - São Conrado, Rio de Janeiro, Brazil",
@@ -16,6 +18,7 @@
 		"posterImage": "assets/images/img-2.jpeg"
 	},
 	{
+		"id": "isamu-noguchi-museum",
 		"title": "ISAMU NOGUCHI MUSEUM",
 		"location": "New York, NY",
 		"address": "9-01 33rd Rd, Queens, NY 11106",
@@ -24,6 +27,7 @@
 		"posterImage": "assets/images/img-3.jpeg"
 	},
 	{
+		"id": "the-glass-house",
 		"title": "THE GLASS HOUSE",
 		"location": "Connecticut, USA",
 		"address": "199 Elm St, New Canaan, Connecticut 06840",

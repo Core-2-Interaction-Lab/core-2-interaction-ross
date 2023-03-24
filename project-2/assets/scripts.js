@@ -16,6 +16,8 @@ const renderItems = (collection) => {
 		itemImage.src = item.posterImage // Set the `src` attribute from the JSON
 		listItem.appendChild(itemImage) // And add that too
 
+		// add an ID to the list item for unique styling
+		listItem.id = item.id;
  
 		// This can get annoying, so we can use “template literals” instead
 		const itemDetails =
