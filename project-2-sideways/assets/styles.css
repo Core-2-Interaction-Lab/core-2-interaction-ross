@@ -1,0 +1,111 @@
+:root {
+	--spacing: 20px;
+}
+
+html {
+	overflow: hidden;
+}
+
+body {
+	font-family: Verdana;
+	font-weight: 100;
+	cursor: crosshair;
+    width: 100%;
+    /* take up only the viewport height available */
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	/* overflow only on the x-axis */
+	overflow-y: hidden;
+	overflow-x: auto;
+}
+
+body * {
+	font-weight: 100;
+}
+
+h1 {
+	text-transform: uppercase;
+	/* text size responsive to viewport width */
+	font-size: 12vw;
+	padding-left: var(--spacing);
+	position: sticky;
+	left: 0;
+	width: 100%;
+}
+
+ul {
+	flex: 1;
+	display: flex;
+	white-space: nowrap;
+	gap: var(--spacing);
+	list-style: none;
+}
+
+li {
+	display: flex;
+	flex-direction: column;
+	gap: var(--spacing);
+	flex: none;
+	padding: var(--spacing);
+	max-width: 40vw;
+	/* return to normal line breaking */
+	white-space: normal;
+	/* for responsive image height */
+	height: calc(100vh - 12vw);
+}
+
+p  {
+	font-size: Max(1vw, 12px);
+}
+
+.color-blue {
+	color: blue;
+}
+
+.color-red {
+	color: blue;
+}
+
+.image-wrapper {
+	/* position: relative; for lightbox positioning */
+	position: relative;
+	/* overflow: hidden; for responsive image height */
+	overflow: hidden;
+}
+
+/* for responsive image height */
+.image-wrapper img {
+	display: block;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.lightbox {
+	background-color: aliceblue;
+	padding: 10px 15px;
+	border-radius: 10px;
+	overflow: hidden;
+	/* position it dead center */
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, calc(-50% + 20px));
+	/* default states prior to transition/animation */
+	opacity: 0;
+	filter: blur(10px);
+	/* transition everything. not performant but it's convenient */
+	transition: .3s;
+}
+
+.lightbox-enabled .lightbox {
+	opacity: 1;
+	filter: blur(0);
+	transform: translate(-50%, -50%);
+}
+
+@media (max-width: 600px) {
+	ul {
+		grid-template-columns: 1fr;
+	}
+}
