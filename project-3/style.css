@@ -1,0 +1,15 @@
+body {
+	min-height: 200vh;
+}
+
+.cursor {
+	--size: 20px;
+	position: fixed;
+	/* start off screen */
+	top: -1000px;
+	left: -1000px;
+	background-color: black; 
+	border-radius: 50%;
+	width: var(--size);
+	height: var(--size);
+}
