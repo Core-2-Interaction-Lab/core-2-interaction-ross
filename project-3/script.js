@@ -104,15 +104,14 @@ let cursorLeft = 0;
 let cursorTop = 0;
 
 window.addEventListener('mousemove', e => {
-	console.log(e);
+	// console.log(e);
 	const momentum = Math.max(Math.max(e.movementX, e.movementY) / 10, 1);
 	cursorLeft = e.clientX;
 	cursorTop = e.clientY;
 	cursor.style.left = `${cursorLeft}px`;
 	cursor.style.top = `${cursorTop}px`;
-	cursor.style.transform = `scale(${momentum})`;
+	cursor.style.transform = `translate(-50%,-50%) scale(${momentum})`;
 });
-
 
 
 // HOW TO FETCH DATA ACROSS THE WEB
@@ -120,7 +119,84 @@ const url = 'https://data.cityofnewyork.us/resource/vfnx-vebw.json?$limit=50000'
 
 fetch(url)
   .then(response => response.json())
-	.then(data => {
+	.then(data => playWithData(data))
+	.then(() => {
 		// And passes the data to the function, above!
-		// console.log(data);
+		addAudio()
+	
 })
+
+const playWithData = data => {
+	console.log(data);
+	
+	const quaas = data.filter(item => item.quaas == true);
+	console.log(quaas);
+
+	// get all of the dates
+	const dates = data.map(item => {
+		const month = (item.date).slice(0,2);
+		const day = (item.date).slice(2,4);
+		const year = (item.date).slice(4,8);
+		const formattedDate = `${month}/${day}/${year}`;
+		const date = new Date(formattedDate);
+		return date;
+	});
+
+	const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+	const makeDateFriendly = unfriendlyDate => {
+		return new Date(unfriendlyDate).toLocaleDateString('en-US', options);
+	}
+
+	const startingDate = Math.min(...dates);
+	const endingDate = Math.max(...dates);
+
+	console.log({startingDate});
+	console.log({endingDate});
+
+	const friendlyStartingDate = makeDateFriendly(startingDate);
+	const friendlyEndingDate = makeDateFriendly(endingDate);
+	console.log({friendlyStartingDate,friendlyEndingDate});
+	const oneDay = 1000 * 60 * 60 * 24;
+
+	// plot out all of the dates
+	const totalDays = 14;
+
+	const dataList = document.querySelector('.data-list');
+
+	for (let index = 0; index <= totalDays; index++) {
+		// with each loop, add one day to the calendar
+		const newDay = startingDate + (oneDay * index);
+		const formattedDay = makeDateFriendly(newDay);
+		const originalFormattedDay = formattedDay.replaceAll('/','');
+
+		const quaasOnDate = quaas.filter(item => item.date == originalFormattedDay);
+		console.log(quaasOnDate)
+		let quaasHTML = ``;
+		quaasOnDate.forEach(() => {
+			quaasHTML += `<button class="tick"></button>`
+		})
+
+		const html = `
+			<li class="data-row">
+				<span class="data-day">${formattedDay}</span>
+				${quaasHTML}
+			</li>
+		`;
+
+		dataList.insertAdjacentHTML('beforeEnd', html);
+
+	}
+
+	// figure out and plot how many quaas land on each of those dates
+}
+
+const addAudio = () => {
+		const buttons = document.querySelectorAll('.tick');
+		const audio = document.querySelector('.data-sound');
+
+		buttons.forEach(button => {
+			button.addEventListener('click', () => {
+				audio.play();
+			})
+		})
+}

@@ -1,15 +1,48 @@
+:root {
+	--size-1: 25px;
+}
+
+html {
+	cursor: none;
+}
+
 body {
 	min-height: 200vh;
+	font: 30px/1 monospace;
 }
 
 .cursor {
-	--size: 20px;
 	position: fixed;
 	/* start off screen */
 	top: -1000px;
 	left: -1000px;
-	background-color: black; 
+	background-color: red; 
 	border-radius: 50%;
-	width: var(--size);
-	height: var(--size);
+	width: var(--size-1);
+	height: var(--size-1);
+	transform: translate(-50%,-50%);
+	transition: transform .1s;
+	z-index: 1;
+	mix-blend-mode: multiply;
+}
+
+.data-list {
+	display: flex;
+	flex-direction: column;
+	gap: var(--size-1);
+	padding: var(--size-1);
+	list-style: none;
+}
+
+.data-row {
+	display: flex;
+	gap: var(--size-1);
+}
+
+.tick {
+	display: inline-block;
+	width: var(--size-1);
+	height: var(--size-1);
+	background-color: blue;
+	border-radius: 50%;
 }
