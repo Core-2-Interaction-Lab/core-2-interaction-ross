@@ -99,6 +99,8 @@ isItSunny ? endClassEarly = true : assignHomework = true;
 // 	console.log(e);
 // })
 
+
+// ADD CUSTOM CURSOR WITH MOUSE TRACKING
 const cursor = document.querySelector('.cursor');
 let cursorLeft = 0;
 let cursorTop = 0;
@@ -119,20 +121,26 @@ const url = 'https://data.cityofnewyork.us/resource/vfnx-vebw.json?$limit=50000'
 
 fetch(url)
   .then(response => response.json())
+	// pass the data to the function!
 	.then(data => playWithData(data))
 	.then(() => {
-		// And passes the data to the function, above!
+		// now that HTML is on the page, tap into it!
 		addAudio()
-	
 })
 
+
+
+// QUERY, MANIPULATE, VISUALIZE THE DATASET
 const playWithData = data => {
+	// what are we starting with?
 	console.log(data);
 	
+	// how many instances were QUAA-ING?
 	const quaas = data.filter(item => item.quaas == true);
 	console.log(quaas);
 
 	// get all of the dates
+	// we reformat the date field within the dataset so that the Date() method can read it
 	const dates = data.map(item => {
 		const month = (item.date).slice(0,2);
 		const day = (item.date).slice(2,4);
@@ -142,11 +150,19 @@ const playWithData = data => {
 		return date;
 	});
 
+	// make sure the month and day are 2 digits with these 'options'
+	// the toLocaleDateString method makes a friendly, readable format out of the unfriendly, millisecond time of JS
 	const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+	// we do this a few times, so we make a (reusable) function out of it
 	const makeDateFriendly = unfriendlyDate => {
 		return new Date(unfriendlyDate).toLocaleDateString('en-US', options);
 	}
 
+	// what timeframe are we working with?
+	// get the beginning and ending dates
+	// the ... is the SPREAD operator
+	// it expands an iterable (like an array) into more elements
+	// and makes it usable for a Math function
 	const startingDate = Math.min(...dates);
 	const endingDate = Math.max(...dates);
 
@@ -156,19 +172,26 @@ const playWithData = data => {
 	const friendlyStartingDate = makeDateFriendly(startingDate);
 	const friendlyEndingDate = makeDateFriendly(endingDate);
 	console.log({friendlyStartingDate,friendlyEndingDate});
+	// remember, JS reads time in milliseconds
+	// how many milliseconds in a day?
 	const oneDay = 1000 * 60 * 60 * 24;
 
 	// plot out all of the dates
+	// we could have actually subtracted startingDate from endingDate here if we wanted to be smarter
 	const totalDays = 14;
 
+	// where to insert the HTML
 	const dataList = document.querySelector('.data-list');
 
+	// loop through each of the 14 days!
 	for (let index = 0; index <= totalDays; index++) {
 		// with each loop, add one day to the calendar
 		const newDay = startingDate + (oneDay * index);
 		const formattedDay = makeDateFriendly(newDay);
+		// make it match the item.date format of the dataset so that we can filter for it
 		const originalFormattedDay = formattedDay.replaceAll('/','');
 
+		// how many quaas on each day??
 		const quaasOnDate = quaas.filter(item => item.date == originalFormattedDay);
 		console.log(quaasOnDate)
 		let quaasHTML = ``;
@@ -183,6 +206,7 @@ const playWithData = data => {
 			</li>
 		`;
 
+		// insert the HTML onto the page
 		dataList.insertAdjacentHTML('beforeEnd', html);
 
 	}
